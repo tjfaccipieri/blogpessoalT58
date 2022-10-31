@@ -1,0 +1,14 @@
+.barra {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(36deg, #f0c25a 8%, #8f4b25 89%);
+}
+
+.textos {
+  display: flex;
+  gap: 20px
+}
+
+.title {
+  color: red !important
+}
