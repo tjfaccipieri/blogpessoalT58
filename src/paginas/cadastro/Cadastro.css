@@ -1,0 +1,7 @@
+.fundoCadastro {
+  background-image: url('https://i.imgur.com/tk1FOG0.jpg');
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

@@ -2,3 +2,11 @@
   background-image: url('https://i.imgur.com/u5wXtNc.jpg');
   min-height: 100vh;
 }
+
+a {
+  text-decoration: none;
+}
+
+.linkCadastro {
+  text-decoration: underline;
+}
