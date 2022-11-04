@@ -18,7 +18,7 @@ function Cadastro() {
               <TextField name='foto' label='URL da foto' fullWidth margin='normal' />
               <TextField name='senha' label='Senha' fullWidth margin='normal' />
               <TextField name='confirmSenha' label='Confirmar senha' fullWidth margin='normal' />
-              <Box display='flex' justifyContent='space-around' marginTop={2}>
+              <Box display='flex' justifyContent='center' gap={4} marginTop={2}>
                 <Link to='/login'>
                   <Button variant='contained' color='error'>Cancelar</Button>
                 </Link>
