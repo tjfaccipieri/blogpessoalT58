@@ -35,14 +35,12 @@ function Login() {
   // Função que irá enviar os dados de fato para o backend, interligando com o conteudo da Service.ts
   async function logar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
-    
     try {
       await login('/usuarios/logar', userLogin, setToken);
       alert('Usuário logado com sucesso')
     } catch (error) {
       alert('Dados de usuário incorretos')
     }
-    
   }
 
   // Hook de efeito colateral, sempre executa uma função quando o que estiver no seu Array é alterado
@@ -56,7 +54,7 @@ function Login() {
     <>
       <Grid container alignItems="center">
         <Grid item xs={6}>
-          <Box padding={20}>
+          <Box paddingX={20}>
             <form onSubmit={logar}>
               <Typography variant="h2" align="center">
                 Entrar

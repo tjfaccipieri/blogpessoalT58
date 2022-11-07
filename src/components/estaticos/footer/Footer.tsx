@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { FacebookRounded } from '@mui/icons-material';
 import { Instagram, LinkedIn } from '@material-ui/icons';
+import GitHub from '@mui/icons-material/GitHub'
 
 function Footer() {
   return (
@@ -20,6 +21,9 @@ function Footer() {
               </a>
               <a href="https://www.instagram.com" target="_blank">
                 <Instagram style={{ fontSize: 60, color: 'white' }} />
+              </a>
+              <a href="https://www.github.com/tjfaccipieri" target="_blank">
+                <GitHub style={{ fontSize: 60, color: 'white' }} />
               </a>
               <a
                 href="https://www.linkedin.com/in/thiago-faccipieri/"
