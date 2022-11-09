@@ -1,8 +1,4 @@
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -13,7 +9,7 @@ function Navbar() {
     <>
       <AppBar position="static">
         <Toolbar variant="dense">
-          <Grid container justifyContent="space-between">
+          <Grid container justifyContent="space-between" >
             <Box style={{ cursor: 'pointer' }}>
               <Typography variant="h5" color="inherit">
                 BlogPessoal
@@ -22,19 +18,25 @@ function Navbar() {
 
             <Box display="flex" justifyContent="start">
               <Box mx={1} style={{ cursor: 'pointer' }}>
-                <Typography variant="h6" color="inherit">
-                  home
-                </Typography>
+                <Link to="/home" style={{ color: 'white' }}>
+                  <Typography variant="h6" color="inherit">
+                    home
+                  </Typography>
+                </Link>
               </Box>
               <Box mx={1} style={{ cursor: 'pointer' }}>
-                <Typography variant="h6" color="inherit">
-                  postagens
-                </Typography>
+                <Link to="/posts" style={{ color: 'white' }}>
+                  <Typography variant="h6" color="inherit">
+                    postagens
+                  </Typography>
+                </Link>
               </Box>
               <Box mx={1} style={{ cursor: 'pointer' }}>
-                <Typography variant="h6" color="inherit">
-                  temas
-                </Typography>
+                <Link to="/temas" style={{ color: 'white' }}>
+                  <Typography variant="h6" color="inherit">
+                    temas
+                  </Typography>
+                </Link>
               </Box>
               <Box mx={1} style={{ cursor: 'pointer' }}>
                 <Typography variant="h6" color="inherit">

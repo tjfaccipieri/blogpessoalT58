@@ -62,7 +62,6 @@ function Cadastro() {
         alert('Usuário cadastrado com sucesso'); //msg em caso de sucesso
       } catch (error) {
         alert('Falha interna ao cadastrar'); //caso de erro no backend, cai aqui
-        console.log(error);
       }
     } else {
       // msg de erro para o caso de não passar no if das senhas

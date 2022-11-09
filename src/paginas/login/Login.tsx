@@ -29,7 +29,6 @@ function Login() {
       ...userLogin,
       [event.target.name]: event.target.value,
     });
-    console.log(userLogin);
   }
 
   // Função que irá enviar os dados de fato para o backend, interligando com o conteudo da Service.ts
