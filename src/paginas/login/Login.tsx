@@ -36,9 +36,9 @@ function Login() {
     event.preventDefault();
     try {
       await login('/usuarios/logar', userLogin, setToken);
-      alert('Usuário logado com sucesso')
+      alert('Usuário logado com sucesso');
     } catch (error) {
-      alert('Dados de usuário incorretos')
+      alert('Dados de usuário incorretos');
     }
   }
 

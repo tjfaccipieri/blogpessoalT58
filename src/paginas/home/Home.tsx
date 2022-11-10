@@ -3,6 +3,7 @@ import React from 'react';
 import './Home.css';
 import { Typography } from '@material-ui/core';
 import TabPostagem from '../../components/postagens/tabPostagens/TabPostagem';
+import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
 
 function Home() {
   return (
@@ -19,7 +20,7 @@ function Home() {
               </Typography>
             </Box>
             <Box display="flex" justifyContent="center">
-              <Box marginRight={1}></Box>
+              <Box marginRight={1}><ModalPostagem /></Box>
               <Button variant="outlined" style={{ borderColor: 'white', backgroundColor: '#3F51B5', color: 'white', }}>
                 Ver Postagens
               </Button>
