@@ -3,24 +3,32 @@ import { Box, Grid } from '@mui/material';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import useLocalStorage from 'react-use-localstorage';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToken } from '../../../store/tokens/actions';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function Navbar() {
+  let history = useNavigate();
 
-  let history = useNavigate()
-  const [token, setToken] = useLocalStorage('token')
+  const dispatch = useDispatch();
+
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  );
 
   function logout() {
-    alert('Usuário deslogado com sucesso')
-    setToken('')
-    history('/login')
+    alert('Usuário deslogado com sucesso');
+    dispatch(addToken(''));
+    history('/login');
   }
 
-  return (
-    <>
+  let navBarComponent;
+
+  if (token !== '') {
+    navBarComponent = (
       <AppBar position="static">
         <Toolbar variant="dense">
-          <Grid container justifyContent="space-between" >
+          <Grid container justifyContent="space-between">
             <Box style={{ cursor: 'pointer' }}>
               <Typography variant="h5" color="inherit">
                 BlogPessoal
@@ -50,21 +58,27 @@ function Navbar() {
                 </Link>
               </Box>
               <Box mx={1} style={{ cursor: 'pointer' }}>
-                <Link to='/cadastroTema' style={{ color: 'white' }}>
-                <Typography variant="h6" color="inherit">
-                  cadastrar tema
-                </Typography>
+                <Link to="/cadastroTema" style={{ color: 'white' }}>
+                  <Typography variant="h6" color="inherit">
+                    cadastrar tema
+                  </Typography>
                 </Link>
               </Box>
               <Box mx={1} style={{ cursor: 'pointer' }} onClick={logout}>
-                  <Typography variant="h6" color="inherit">
-                    logout
-                  </Typography>
+                <Typography variant="h6" color="inherit">
+                  logout
+                </Typography>
               </Box>
             </Box>
           </Grid>
         </Toolbar>
       </AppBar>
+    );
+  }
+
+  return( 
+    <>
+      {navBarComponent}
     </>
   );
 }

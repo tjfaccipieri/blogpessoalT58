@@ -11,7 +11,6 @@ import './ListaPostagem.css';
 import { Box } from '@mui/material';
 import {useState, useEffect} from 'react';
 import Postagem from '../../../model/Postagem';
-import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../service/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
@@ -22,10 +21,12 @@ function ListaPostagem() {
 
   const [postagens, setPostagens] = useState<Postagem[]>([])
 
-  // const [token, setToken] = useLocalStorage('token')
-
   const token = useSelector<TokenState, TokenState['tokens']>(
     (state) => state.tokens
+  )
+
+  const userId = useSelector<TokenState, TokenState['id']>(
+    (state) => state.id
   )
 
   useEffect(() => {
@@ -49,9 +50,11 @@ function ListaPostagem() {
 
   return (
     <>
+      {postagens.length === 0 && <span className="loader">L &nbsp; ading</span>}
+
       {postagens.map((postagem) => (
         <Box m={2}>
-        <Card variant="outlined">
+        <Card variant="outlined" className='postagens'>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Postagens
@@ -67,16 +70,20 @@ function ListaPostagem() {
             
             <Typography variant="body2" component="p">
               Mostrar apenas data: {new Date(Date.parse(postagem.data)).toLocaleDateString()} <br />
-              Mostar data e hora: {new Date(Date.parse(postagem.data)).toLocaleString()} <br />
-              Mostrar apenas hora: {new Date(Date.parse(postagem.data)).toLocaleTimeString()}
+              {/* Mostar data e hora: {new Date(Date.parse(postagem.data)).toLocaleString()} <br />
+              Mostrar apenas hora: {new Date(Date.parse(postagem.data)).toLocaleTimeString()} */}
             </Typography>
 
             <Typography variant="body2" component="p">
               {postagem.tema?.descricao}
             </Typography>
+
+            <Typography variant="body2" component="p">
+              Postagem feita por: {postagem.usuario?.nome}
+            </Typography>
           </CardContent>
 
-          <CardActions>
+          {postagem.usuario?.id === +userId && <CardActions>
             <Box display="flex" justifyContent="center" mb={1.5}>
               <Link to={`/editarPostagem/${postagem.id}`} className="text-decorator-none">
                 <Box mx={1}>
@@ -99,7 +106,7 @@ function ListaPostagem() {
                 </Box>
               </Link>
             </Box>
-          </CardActions>
+          </CardActions>}
         </Card>
       </Box>
       ))}

@@ -1,0 +1,9 @@
+.btnModal {
+  color: #3F51B5 !important;
+  background-color: aliceblue !important;
+}
+
+.btnModal:hover{
+  background-color: #bbc0d8 !important;
+  color: #323284
+}

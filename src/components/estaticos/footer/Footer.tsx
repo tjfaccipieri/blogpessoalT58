@@ -3,11 +3,17 @@ import React from 'react';
 import { FacebookRounded } from '@mui/icons-material';
 import { Instagram, LinkedIn } from '@material-ui/icons';
 import GitHub from '@mui/icons-material/GitHub'
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function Footer() {
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  );
+
   return (
     <>
-      <Grid container direction="row" justifyContent="center" alignItems="center">
+      {token !== '' && <Grid container direction="row" justifyContent="center" alignItems="center">
         <Grid alignItems="center" item xs={12}>
           <Box style={{ backgroundColor: '#3F51B5', height: '120px' }}>
             <Box paddingTop={1} display="flex" alignItems="center" justifyContent="center">
@@ -48,7 +54,7 @@ function Footer() {
             </Box>
           </Box>
         </Grid>
-      </Grid>
+      </Grid>}
     </>
   );
 }

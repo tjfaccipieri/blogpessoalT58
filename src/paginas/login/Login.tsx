@@ -2,15 +2,23 @@ import { Grid, Box, Typography, TextField, Button } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { toast } from 'react-toastify';
 import UserLogin from '../../model/UserLogin';
 import { login } from '../../service/Service';
-import { addToken } from '../../store/tokens/actions';
+import { addId, addToken } from '../../store/tokens/actions';
 import './Login.css';
 
 function Login() {
   // useState define como uma determinada variavel será inicializada quando o Componente for carregado em tela
   const [userLogin, setUserLogin] = useState<UserLogin>({
+    id: 0,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: '',
+    token: '',
+  });
+  const [respUserLogin, setRespUserLogin] = useState<UserLogin>({
     id: 0,
     nome: '',
     usuario: '',
@@ -42,8 +50,16 @@ function Login() {
   async function logar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      await login('/usuarios/logar', userLogin, setToken);
-      alert('Usuário logado com sucesso');
+      await login('/usuarios/logar', userLogin, setRespUserLogin);
+      toast.info('Usuário logado com sucesso', {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",});
     } catch (error) {
       alert('Dados de usuário incorretos');
     }
@@ -56,6 +72,14 @@ function Login() {
       history('/home');
     }
   }, [token]);
+
+  useEffect(() => {
+    if (respUserLogin.token !== '') {
+      dispatch(addToken(respUserLogin.token))
+      dispatch(addId(respUserLogin.id.toString()))
+      history('/home')
+    }
+  }, [respUserLogin.token])
 
   return (
     <>
@@ -94,7 +118,7 @@ function Login() {
                 </Button>
               </Box>
             </form>
-            <Typography variant="body1" align="center" marginTop={2}>
+            <Typography variant="body1" gutterBottom align="center" marginTop={2}>
               Ainda não tem uma conta?
               <Link to="/cadastro" className="linkCadastro">
                 Cadastre-se

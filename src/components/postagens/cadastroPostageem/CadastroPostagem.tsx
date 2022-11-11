@@ -1,10 +1,12 @@
 import { Button, Container, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import React, { useState, useEffect, ChangeEvent } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../model/Postagem';
 import Tema from '../../../model/Tema'
+import User from '../../../model/User';
 import { busca, buscaId, post, put } from '../../../service/Service'
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function CadastroPostagem() {
 
@@ -12,7 +14,13 @@ function CadastroPostagem() {
 
   const {id} = useParams<{id: string}>()
 
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  )
+
+  const userId = useSelector<TokenState, TokenState['id']>(
+    (state) => state.id
+  )
 
   useEffect(() => {
     if(token === '') {
@@ -33,14 +41,23 @@ function CadastroPostagem() {
     data: '',
     texto: '',
     titulo: '',
-    tema: null
+    tema: null,
+    usuario: null
+  })
+
+  const [usuario, setUsuario] = useState<User>({
+    id: +userId,
+    nome:'',
+    usuario: '',
+    senha: '',
+    foto: ''
   })
 
   function updatedModel(event: ChangeEvent<HTMLInputElement>) {
     setPostagem({
       ...postagem,
       [event.target.name]: event.target.value,
-      tema: tema
+      tema: tema,
     })
   }
 
@@ -55,8 +72,10 @@ function CadastroPostagem() {
   useEffect(() => {
     setPostagem({
         ...postagem,
-        tema: tema
+        tema: tema,
+        usuario: usuario
     })
+    console.log(postagem)
 }, [tema])
 
   async function findByIdPostagem(id: string) {

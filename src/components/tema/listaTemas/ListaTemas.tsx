@@ -11,13 +11,16 @@ import {
   Typography,
 } from '@mui/material';
 import Tema from '../../../model/Tema';
-import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../service/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 
 function ListaTemas() {
   // constante que vai acessar o meu token
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  )
 
   let history = useNavigate()
   useEffect(() => {

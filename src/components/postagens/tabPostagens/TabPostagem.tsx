@@ -24,7 +24,7 @@ function TabPostagem() {
 
         <TabPanel value="1">
           <Box display="flex" flexWrap="wrap" justifyContent="center">
-            <ListaPostagem />
+              <ListaPostagem />
           </Box>
         </TabPanel>
 

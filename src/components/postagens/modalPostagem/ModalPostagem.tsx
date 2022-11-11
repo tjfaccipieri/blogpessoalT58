@@ -3,6 +3,7 @@ import { Box, Button, Modal } from '@mui/material';
 import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import CadastroPostagem from '../cadastroPostageem/CadastroPostagem';
+import './ModalPostagem.css'
 
 
 function getModalStyle() {
@@ -60,7 +61,7 @@ function ModalPostagem() {
 
   return (
     <>
-      <Button onClick={handleOpen} variant='contained' color='warning'>Nova Postagem</Button>
+      <Button onClick={handleOpen} variant='contained' className='btnModal'>Nova Postagem</Button>
       <Modal
         open={open}
         onClose={handleClose}

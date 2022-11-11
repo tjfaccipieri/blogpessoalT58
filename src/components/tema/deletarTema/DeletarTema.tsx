@@ -9,16 +9,19 @@ import {
 import React, { useState, useEffect } from 'react';
 import './DeletarTema.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import Tema from '../../../model/Tema';
 import { buscaId, deleteId } from '../../../service/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function DeletarTema() {
   let history = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  )
 
   useEffect(() => {
     if(token === '') {
