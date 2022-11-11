@@ -98,6 +98,7 @@ function Cadastro() {
                 label="Nome completo"
                 fullWidth
                 margin="normal"
+                required
               />
               <TextField
                 value={user.usuario}

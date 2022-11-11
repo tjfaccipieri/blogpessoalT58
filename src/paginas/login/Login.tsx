@@ -1,9 +1,11 @@
 import { Grid, Box, Typography, TextField, Button } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import UserLogin from '../../model/UserLogin';
 import { login } from '../../service/Service';
+import { addToken } from '../../store/tokens/actions';
 import './Login.css';
 
 function Login() {
@@ -21,7 +23,12 @@ function Login() {
   let history = useNavigate();
 
   // Hooks que vão manipular o nosso Local Storage para gravar o Token
-  const [token, setToken] = useLocalStorage('token');
+  // const [token, setToken] = useLocalStorage('token');
+
+  //novo metodo de login, utilizando o redux
+  const dispatch = useDispatch()
+
+  const [token, setToken] = useState('')
 
   // Função que junto com a setUserLogin irá atualizar o valor inicial da userLogin
   function updateModel(event: ChangeEvent<HTMLInputElement>) {
@@ -45,6 +52,7 @@ function Login() {
   // Hook de efeito colateral, sempre executa uma função quando o que estiver no seu Array é alterado
   useEffect(() => {
     if (token !== '') {
+      dispatch(addToken(token))
       history('/home');
     }
   }, [token]);

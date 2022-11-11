@@ -132,6 +132,7 @@ function CadastroPostagem() {
             margin='normal' 
             fullWidth
             multiline
+            required
             minRows={4}
             />
 

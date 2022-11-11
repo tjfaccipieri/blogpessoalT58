@@ -1,10 +1,21 @@
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import useLocalStorage from 'react-use-localstorage';
 
 function Navbar() {
+
+  let history = useNavigate()
+  const [token, setToken] = useLocalStorage('token')
+
+  function logout() {
+    alert('Usuário deslogado com sucesso')
+    setToken('')
+    history('/login')
+  }
+
   return (
     <>
       <AppBar position="static">
@@ -45,12 +56,10 @@ function Navbar() {
                 </Typography>
                 </Link>
               </Box>
-              <Box mx={1} style={{ cursor: 'pointer' }}>
-                <Link to="/login" style={{ color: 'white' }}>
+              <Box mx={1} style={{ cursor: 'pointer' }} onClick={logout}>
                   <Typography variant="h6" color="inherit">
                     logout
                   </Typography>
-                </Link>
               </Box>
             </Box>
           </Grid>
