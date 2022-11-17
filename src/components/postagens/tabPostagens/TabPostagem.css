@@ -3,5 +3,19 @@
 }
 
 .tabPostagem {
-  color: #fff !important
+  color: #fff !important;
+  margin-right: 1rem !important;
 }
+
+.boxPostagem {
+  margin: 0 auto ;
+  width: 85%;
+}
+
+.containerPostagens {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+}
+

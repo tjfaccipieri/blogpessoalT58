@@ -30,9 +30,11 @@ function Navbar() {
         <Toolbar variant="dense">
           <Grid container justifyContent="space-between">
             <Box style={{ cursor: 'pointer' }}>
-              <Typography variant="h5" color="inherit">
-                BlogPessoal
-              </Typography>
+            <Link to="/home" style={{ color: 'white' }}>
+                  <Typography variant="h6" color="inherit">
+                    BlogPessoal
+                  </Typography>
+                </Link>
             </Box>
 
             <Box display="flex" justifyContent="start">

@@ -1,44 +1,40 @@
 .fundoLogin {
-  background-image: url('https://i.imgur.com/u5wXtNc.jpg');
+  background-color: #407BFF99;
+  background-image: url('https://i.imgur.com/9OZAbB5.png');
   min-height: 100vh;
+  background-size: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 a {
   text-decoration: none;
 }
 
+.loginTitle {
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  color: #407BFF;
+  letter-spacing: 2px !important;
+
+}
+
 .linkCadastro {
   text-decoration: underline;
 }
 
-
-.loader {
-  display: inline-block;
-  font-size: 48px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #000;
-  position: relative;
-}
-.loader::before {
-  content: '';  
-  position: absolute;
-  left: 34px;
-  bottom: 8px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 5px solid #000;
-  border-bottom-color: #fff;
-  box-sizing: border-box;
-  animation: rotation 0.6s linear infinite;
+.loginBtn {
+  padding: .5rem 3rem ;
+  border: 1px solid #407BFF;
+  border-radius: 2rem ;
+  background-color: #407BFF ;
+  color: #fff ;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} 
+.loginBtn:disabled {
+  background-color: #fff ;
+  color: #407BFF ;
+  cursor: not-allowed;
+}

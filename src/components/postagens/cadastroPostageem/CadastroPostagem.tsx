@@ -129,7 +129,7 @@ function CadastroPostagem() {
     <>
       <Container maxWidth='sm' className='topo'>
         <form onSubmit={cadastrar}>
-          <Typography variant='h3' align='center'>Formulário de cadastro de postagem</Typography>
+          <Typography variant='h3' align='center'>Formulário de {id === undefined ? <span>cadastro</span> : <span>atualização</span>} de postagem</Typography>
 
           <TextField
             id='titulo'
@@ -172,7 +172,7 @@ function CadastroPostagem() {
             </Select>
             <FormHelperText>Escolha um tema para a postagem</FormHelperText>
 
-            <Button type='submit' variant='contained' color='primary' disabled={tema.id === 0}>Finalizar</Button>
+            <Button type='submit' variant='contained' color='primary' disabled={tema.id === 0}>{id === undefined ? <span>Nova postagem</span> : <span>Atualizar postagem</span>}</Button>
           </FormControl>
         </form>
       </Container>

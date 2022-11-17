@@ -46,6 +46,19 @@ function Login() {
     });
   }
 
+  const [loginForm, setLoginForm] = useState(true)
+
+
+
+  const padraoEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  useEffect(() => {
+    if(userLogin.usuario.match(padraoEmail) && userLogin.senha.length >= 8) {
+      setLoginForm(false)
+    } else {
+      setLoginForm(true)
+    }
+  }, [userLogin])
+
   // Função que irá enviar os dados de fato para o backend, interligando com o conteudo da Service.ts
   async function logar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -61,7 +74,15 @@ function Login() {
         progress: undefined,
         theme: "colored",});
     } catch (error) {
-      alert('Dados de usuário incorretos');
+      toast.error('Falha ao conectar, reveja usuário e senha', {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",});
     }
   }
 
@@ -87,7 +108,7 @@ function Login() {
         <Grid item xs={6}>
           <Box paddingX={20}>
             <form onSubmit={logar}>
-              <Typography variant="h2" align="center">
+              <Typography className='loginTitle' align="center">
                 Entrar
               </Typography>
               <TextField
@@ -113,13 +134,13 @@ function Login() {
                 margin="normal"
               />
               <Box display="flex" justifyContent="center" marginY={2}>
-                <Button variant="contained" type="submit">
+                <button className='loginBtn' type="submit" disabled={loginForm}>
                   Entrar
-                </Button>
+                </button>
               </Box>
             </form>
             <Typography variant="body1" gutterBottom align="center" marginTop={2}>
-              Ainda não tem uma conta?
+              Ainda não tem uma conta? {' '}
               <Link to="/cadastro" className="linkCadastro">
                 Cadastre-se
               </Link>

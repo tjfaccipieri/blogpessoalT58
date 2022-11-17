@@ -24,25 +24,25 @@ function App() {
     <Provider store={store}>
       <ToastContainer />
       <Router>
-      <Navbar />
-      <div style={{minHeight: '74.2vh'}}>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/temas" element={<ListaTemas />} />
-          <Route path="/posts" element={<ListaPostagem />} />
-          <Route path='cadastroTema' element={<CadastroTema />} />
-          <Route path='editarTema/:id' element={<CadastroTema />} />
-          <Route path='apagarTema/:id' element={<DeletarTema />} />
-          <Route path='cadastroPost' element={<CadastroPostagem />} />
-          <Route path='editarPostagem/:id' element={<CadastroPostagem />} />
-          <Route path='deletarPostagem/:id' element={<DeletarPostagem />} />
-        </Routes>
-      </div>
-      <Footer />
-    </Router>
+        <Navbar />
+        <div style={{ minHeight: '74.2vh' }}>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/temas" element={<ListaTemas />} />
+            <Route path="/posts" element={<ListaPostagem />} />
+            <Route path="cadastroTema" element={<CadastroTema />} />
+            <Route path="editarTema/:id" element={<CadastroTema />} />
+            <Route path="apagarTema/:id" element={<DeletarTema />} />
+            <Route path="cadastroPost" element={<CadastroPostagem />} />
+            <Route path="editarPostagem/:id" element={<CadastroPostagem />} />
+            <Route path="deletarPostagem/:id" element={<DeletarPostagem />} />
+          </Routes>
+        </div>
+        <Footer />
+      </Router>
     </Provider>
   );
 }

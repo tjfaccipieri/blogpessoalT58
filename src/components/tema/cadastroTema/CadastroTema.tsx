@@ -6,6 +6,7 @@ import Tema from '../../../model/Tema';
 import { buscaId, put, post } from '../../../service/Service';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import './CadastroTema.css'
+import { toast } from 'react-toastify';
 
 function CadastroTema() {
   let history = useNavigate();
@@ -26,6 +27,7 @@ function CadastroTema() {
   const [tema, setTema] = useState<Tema>({
     id: 0,
     descricao: '',
+
   });
 
   useEffect(() => {
@@ -52,30 +54,80 @@ function CadastroTema() {
   async function cadastrar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if(id !== undefined) {
-      try {
-        await put('/temas', tema, setTema, {
-          headers: {
-            Authorization: token,
-          },
-        })
+    if(tema.descricao.length >= 5) {
 
-        alert('Tema atualizado com sucesso')
-      } catch (error) {
-        alert('Falha ao atualizar o tema')
+      if(id !== undefined) {
+        try {
+          await put('/temas', tema, setTema, {
+            headers: {
+              Authorization: token,
+            },
+          })
+  
+          toast.success('Tema atualizado com sucesso', {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        } catch (error) {
+          toast.error('Falha ao atualizar o tema', {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        }
+      } else {
+        try {
+          await post('/temas', tema, setTema, {
+            headers: {
+              Authorization: token,
+            },
+          })
+  
+          toast.success('Tema cadastrado com sucesso', {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        } catch (error) {
+          toast.error('Falha ao cadastrar o tema', {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        }
       }
     } else {
-      try {
-        await post('/temas', tema, setTema, {
-          headers: {
-            Authorization: token,
-          },
-        })
-
-        alert('Tema cadastrado com sucesso')
-      } catch (error) {
-        alert('Falha ao cadastrar o tema')
-      }
+      toast.error('Descrição muito pequena.. Ta economizando?', {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     }
 
     back()
@@ -94,7 +146,7 @@ function CadastroTema() {
           component="h1"
           align="center"
         >
-          Formulário de cadastro tema
+          Formulário de {id === undefined ? <span>cadastro</span> : <span>atualização</span>} de tema
         </Typography>
 
         <TextField
@@ -110,8 +162,8 @@ function CadastroTema() {
           label="Descrição"
         />
 
-        <Button type="submit" variant="contained" color="primary">
-          Finalizar
+        <Button type="submit" variant="contained" color="primary" disabled={tema.descricao.length < 5}>
+          {id === undefined ? <span>Cadastrar tema</span> : <span>Atualizar tema</span>}
         </Button>
       </form>
     </Container>

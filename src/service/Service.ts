@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: 'https://blogdothiagofaccipieri.onrender.com/',
+  // baseURL: 'http://localhost:8080/'
 });
 
 export const login = async (url: any, dados: any, setDados: any) => {

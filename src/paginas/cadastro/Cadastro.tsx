@@ -55,7 +55,7 @@ function Cadastro() {
     // ===  => checa conteudo e tipagem
 
     // 123 == '123'
-    if (confirmarSenha === user.senha && user.senha.length >= 3) {
+    if (confirmarSenha === user.senha) {
       // caso senhas ok, tenta cadastrar no backend
       try {
         await cadastro('/usuarios/cadastrar', user, setUserResult);
@@ -78,6 +78,21 @@ function Cadastro() {
       history('/login');
     }
   }, [userResult]);
+
+  // ! verificação de campos do formulário para liberar o botão de cadastro
+  const [formCadastro, setFormCadastro] = useState(true)
+
+  // ? regex para senha com letras maiusculas e minusculas + numeros, com minimo de 8 caracteres
+  const padraoSenha = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$/
+
+  // ? regex do padrão de email
+  const padraoEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+  useEffect(() => {
+    if(user.nome.length >= 2 && user.usuario.match(padraoEmail) && user.senha.match(padraoSenha)) {
+      setFormCadastro(false)
+    }
+  }, [user])
 
   return (
     <>
@@ -134,6 +149,7 @@ function Cadastro() {
                 fullWidth
                 margin="normal"
                 placeholder='Digite pelo menos 8 caracteres'
+                required
               />
               <TextField
                 value={confirmarSenha}
@@ -147,11 +163,11 @@ function Cadastro() {
               />
               <Box display="flex" justifyContent="center" gap={4} marginTop={2}>
                 <Link to="/login">
-                  <Button variant="contained" color="error">
+                  <Button variant="contained" color="secondary">
                     Cancelar
                   </Button>
                 </Link>
-                <Button variant="contained" type='submit'>Cadastrar</Button>
+                <Button variant="contained" type='submit' disabled={formCadastro}>Cadastrar</Button>
               </Box>
             </form>
           </Grid>
