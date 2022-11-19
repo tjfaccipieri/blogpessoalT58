@@ -2,12 +2,12 @@ import {Action} from './actions'
 
 export interface TokenState {
   tokens: string,
-  id: string
+  id: string,
 }
 
 const initialState = {
   tokens: '',
-  id: ''
+  id: '',
 }
 
 export const tokensReducer = (state: TokenState = initialState, action: Action) => {
@@ -18,6 +18,7 @@ export const tokensReducer = (state: TokenState = initialState, action: Action) 
     case "ADD_ID": {
       return {id: action.payload, tokens: state.tokens}
     }
+
 
     default: return state
   }

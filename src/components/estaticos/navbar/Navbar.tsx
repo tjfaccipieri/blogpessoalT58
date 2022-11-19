@@ -33,6 +33,7 @@ function Navbar() {
             <Link to="/home" style={{ color: 'white' }}>
                   <Typography variant="h6" color="inherit">
                     BlogPessoal
+                    
                   </Typography>
                 </Link>
             </Box>
