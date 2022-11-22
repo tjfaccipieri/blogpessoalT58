@@ -61,7 +61,7 @@ function ModalPostagem(postId: any) {
 
   return (
     <>
-      <Button onClick={handleOpen} variant='contained' className='btnModal'>Nova Postagem</Button>
+      <Button onClick={handleOpen} variant='contained' color='secondary' size='small'>Deletar</Button>
       <Modal
         open={open}
         onClose={handleClose}
