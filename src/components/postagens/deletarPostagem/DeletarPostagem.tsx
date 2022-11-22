@@ -13,7 +13,7 @@ import Postagem from '../../../model/Postagem';
 import { buscaId, deleteId } from '../../../service/Service';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 
-function DeletarPostagem() {
+function DeletarPostagem(postId: any) {
   let history = useNavigate();
 
   const { id } = useParams<{ id: string }>();
@@ -32,10 +32,11 @@ function DeletarPostagem() {
   }, [token]);
 
   useEffect(() => {
-    if (id !== undefined) {
-      findById(id);
+    if (postId !== undefined) {
+      findById(postId.postId.postId);
     }
-  }, [id]);
+    console.log(postId.postId)
+  }, [postId]);
 
   async function findById(id: string) {
     await buscaId(`/postagens/${id}`, setPostagem, {
@@ -47,12 +48,13 @@ function DeletarPostagem() {
 
   async function sim() {
     try {
-      await deleteId(`/postagens/${id}`, {
+      await deleteId(`/postagens/${postId.postId.postId}`, {
         headers: {
           Authorization: token,
         },
       });
       alert('Postagem apagada com sucesso');
+      history('/posts')
     } catch (error) {
       alert('Falha ao apagar a postagem');
     }

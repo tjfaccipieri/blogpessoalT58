@@ -14,6 +14,7 @@ import Postagem from '../../../model/Postagem';
 import { busca } from '../../../service/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
+import ModalDelete from '../modalDelete/ModalDelete';
 
 function ListaPostagem() {
 
@@ -121,13 +122,18 @@ function ListaPostagem() {
                 </Box>
               </Link>
 
-              <Link to={`/deletarPostagem/${postagem.id}`} className="text-decorator-none">
+              {/* <Link to={`/deletarPostagem/${postagem.id}`} className="text-decorator-none"> */}
+                <Box mx={1}>
+                  <ModalDelete postId={postagem.id} />
+                </Box>
+              {/* </Link> */}
+              {/* <Link to={`/deletarPostagem/${postagem.id}`} className="text-decorator-none">
                 <Box mx={1}>
                   <Button variant="contained" size="small" color="secondary">
                     Deletar
                   </Button>
                 </Box>
-              </Link>
+              </Link> */}
             </Box>
           </CardActions>}
         </Card>
