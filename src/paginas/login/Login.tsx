@@ -109,7 +109,7 @@ function Login() {
           <Box paddingX={20}>
             <form onSubmit={logar}>
               <Typography className='loginTitle' align="center">
-                Entrar
+                Entrar no blog
               </Typography>
               <TextField
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
